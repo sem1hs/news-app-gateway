@@ -35,9 +35,14 @@ public class JwtFilter implements WebFilter {
     public Mono<Void> filter(ServerWebExchange exchange, WebFilterChain chain) {
 
         String path = exchange.getRequest().getURI().getPath();
+        String method = exchange.getRequest().getMethod().name();
 
         if (path.startsWith("/api/v1/auth")) {
             log.info("Auth'a gönderiliyor, token kontrolü atlandı ");
+            return chain.filter(exchange);
+        }
+
+        if ("GET".equals(method) && path.startsWith("/api/v1/news")) {
             return chain.filter(exchange);
         }
 
