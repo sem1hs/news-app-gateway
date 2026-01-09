@@ -4,6 +4,7 @@ package com.semihsahinoglu.gateway.security;
 import com.semihsahinoglu.gateway.exception.ErrorUtil;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.http.HttpMethod;
 import org.springframework.http.HttpStatus;
 import org.springframework.security.config.annotation.web.reactive.EnableWebFluxSecurity;
 import org.springframework.security.config.web.server.SecurityWebFiltersOrder;
@@ -44,7 +45,8 @@ public class SecurityConfiguration {
                 .exceptionHandling(exception -> exception.authenticationEntryPoint(authEntryPoint()))
                 .exceptionHandling(exception -> exception.accessDeniedHandler(deniedHandler()))
                 .authorizeExchange(exchange -> exchange.pathMatchers("/api/v1/auth/**").permitAll())
-                .authorizeExchange(exchange -> exchange.pathMatchers("/api/v1/news/**").permitAll())
+                .authorizeExchange(exchange -> exchange.pathMatchers(HttpMethod.GET,"/api/v1/news/**").permitAll())
+                .authorizeExchange(exchange -> exchange.pathMatchers(HttpMethod.GET,"/api/v1/teams/**").permitAll())
                 .authorizeExchange(exchange -> exchange.pathMatchers("/actuator/**").permitAll())
                 .authorizeExchange(exchange -> exchange.anyExchange().authenticated())
                 .addFilterBefore(filter, SecurityWebFiltersOrder.AUTHENTICATION);
