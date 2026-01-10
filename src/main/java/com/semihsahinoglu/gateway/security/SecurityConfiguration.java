@@ -47,6 +47,7 @@ public class SecurityConfiguration {
                 .authorizeExchange(exchange -> exchange.pathMatchers("/api/v1/auth/**").permitAll())
                 .authorizeExchange(exchange -> exchange.pathMatchers(HttpMethod.GET,"/api/v1/news/**").permitAll())
                 .authorizeExchange(exchange -> exchange.pathMatchers(HttpMethod.GET,"/api/v1/teams/**").permitAll())
+                .authorizeExchange(exchange -> exchange.pathMatchers(HttpMethod.GET,"/api/v1/league/**").permitAll())
                 .authorizeExchange(exchange -> exchange.pathMatchers("/actuator/**").permitAll())
                 .authorizeExchange(exchange -> exchange.anyExchange().authenticated())
                 .addFilterBefore(filter, SecurityWebFiltersOrder.AUTHENTICATION);

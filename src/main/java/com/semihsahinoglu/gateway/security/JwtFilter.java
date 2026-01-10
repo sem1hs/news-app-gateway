@@ -42,7 +42,7 @@ public class JwtFilter implements WebFilter {
             return chain.filter(exchange);
         }
 
-        if ("GET".equals(method) && (path.startsWith("/api/v1/news") || path.startsWith("/api/v1/teams"))) {
+        if ("GET".equals(method) && (path.startsWith("/api/v1/news") || path.startsWith("/api/v1/teams") || path.startsWith("/api/v1/league"))) {
             return chain.filter(exchange);
         }
 
