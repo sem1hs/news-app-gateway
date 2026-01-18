@@ -3,4 +3,4 @@ spring:
     name: gateway
 
   config:
-    import: optional:configserver:http://config:password123@localhost:8888
+    import: optional:configserver:http://config:password123@config-server:8888
