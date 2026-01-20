@@ -16,6 +16,7 @@ import org.springframework.web.server.WebFilterChain;
 import reactor.core.publisher.Mono;
 import org.slf4j.Logger;
 
+import java.util.Arrays;
 import java.util.List;
 
 
@@ -25,6 +26,7 @@ public class JwtFilter implements WebFilter {
     private static final Logger log = LoggerFactory.getLogger(JwtFilter.class);
     private final JwtService jwtService;
     private final ErrorUtil errorUtil;
+    private final List<String> publicUrls = Arrays.asList("/api/v1/news", "/api/v1/teams", "/api/v1/league", "/api/v1/fixture");
 
     public JwtFilter(JwtService jwtService, ErrorUtil errorUtil) {
         this.jwtService = jwtService;
@@ -42,7 +44,7 @@ public class JwtFilter implements WebFilter {
             return chain.filter(exchange);
         }
 
-        if ("GET".equals(method) && (path.startsWith("/api/v1/news") || path.startsWith("/api/v1/teams") || path.startsWith("/api/v1/league"))) {
+        if ("GET".equals(method) && publicUrls.stream().anyMatch(path::startsWith)) {
             return chain.filter(exchange);
         }
 
