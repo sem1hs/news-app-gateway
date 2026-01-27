@@ -26,7 +26,7 @@ public class JwtFilter implements WebFilter {
     private static final Logger log = LoggerFactory.getLogger(JwtFilter.class);
     private final JwtService jwtService;
     private final ErrorUtil errorUtil;
-    private final List<String> publicUrls = Arrays.asList("/api/v1/news", "/api/v1/teams", "/api/v1/league", "/api/v1/fixture");
+    private final List<String> publicUrls = Arrays.asList("/api/v1/news", "/api/v1/teams", "/api/v1/league", "/api/v1/fixture", "/api/v1/standing");
 
     public JwtFilter(JwtService jwtService, ErrorUtil errorUtil) {
         this.jwtService = jwtService;
