@@ -45,6 +45,7 @@ public class JwtFilter implements WebFilter {
         }
 
         if ("GET".equals(method) && publicUrls.stream().anyMatch(path::startsWith)) {
+            log.info("{}'a gönderiliyor, token kontrolü atlandı ", path);
             return chain.filter(exchange);
         }
 
